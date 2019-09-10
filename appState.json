@@ -9,7 +9,8 @@
         "isDirectory": true,
         "children": [
           "7df3d7f7-6136-4a5e-98d5-42aa9a68a59f",
-          "12d72b2b-8f84-40f3-a787-f8447c567a61"
+          "12d72b2b-8f84-40f3-a787-f8447c567a61",
+          "787d88cf-210e-43a4-9c5b-22a2ffde2440"
         ],
         "isRemovable": false,
         "filePath": "hiru1009_issue612"
@@ -23,7 +24,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "hiru1009_issue612/lambda.js",
-        "code": "let SL_REDIS = require('slappforge-sdk-redis');\nlet clusterManager = require('./ClusterManager');\nconst redis = new SL_REDIS.Redis(clusterManager);\n\nexports.handler = function (event, context, callback) {\n    // You must always quit the redis client after it's used\n    // You must always quit the redis client after it's used\n    redis.persist({\n        clusterIdentifier: 'hiruclustername',\n        params: ['11']\n    }, function (error, response, redisClient) {\n        if (error) {\n            callback(error);\n        } else {\n            //redisClient.quit();\n        }\n    });\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "code": "let SL_REDIS = require('slappforge-sdk-redis');\nlet clusterManager = require('./ClusterManager');\nconst redis = new SL_REDIS.Redis(clusterManager);\n\nexports.handler = function (event, context, callback) {\n    // You must always quit the redis client after it's used\n    // You must always quit the redis client after it's used\n    redis.persist({\n        clusterIdentifier: 'hiruclustername',\n        params: ['11']\n    }, function (error, response, redisClient) {\n        if (error) {\n            callback(error);\n        } else {\n            //redisClient.quit();\n        }\n    });\n\n    \n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -48,11 +49,31 @@
         "isRemovable": true,
         "filePath": "hiru1009_issue612/ClusterManager.js",
         "code": "module.exports = function() {\n    this.clusters = [];\n\n    this.clusters[\"hiruclustername\"] = {\n        host: process.env.EndPoint_redisHiruclustername,\n        port: 6379,\n        clusterModeEnabled: false\n    };\n};"
+      },
+      "787d88cf-210e-43a4-9c5b-22a2ffde2440": {
+        "id": "787d88cf-210e-43a4-9c5b-22a2ffde2440",
+        "parent": "1655cfaa-2f9d-4b27-8689-6dd5618c9bab",
+        "name": "new.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "hiru1009_issue612/new.js",
+        "code": "exports.handler = function(event, context, callback) {\n    \n\n\n\n\n    \n    callback(null, {\"message\": \"Successfully executed\"});\n}",
+        "config": {
+          "runtime": "nodejs8.10",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": []
+        },
+        "triggers": []
       }
     },
     "rootNode": "1655cfaa-2f9d-4b27-8689-6dd5618c9bab",
     "openFiles": [
-      "7df3d7f7-6136-4a5e-98d5-42aa9a68a59f"
+      "7df3d7f7-6136-4a5e-98d5-42aa9a68a59f",
+      "787d88cf-210e-43a4-9c5b-22a2ffde2440"
     ],
     "currentFileId": "7df3d7f7-6136-4a5e-98d5-42aa9a68a59f",
     "resources": {
@@ -188,7 +209,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1568105030847
+    "lastSave": 1568105689259
   },
   "VCS_STATE": {
     "provider": "GitHub",
