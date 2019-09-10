@@ -23,7 +23,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "hiru1009_issue612/lambda.js",
-        "code": "let SL_REDIS = require('slappforge-sdk-redis');\nlet clusterManager = require('./ClusterManager');\nconst redis = new SL_REDIS.Redis(clusterManager);\n\nexports.handler = function (event, context, callback) {\n    // You must always quit the redis client after it's used\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "code": "exports.handler = function (event, context, callback) {\n    // You must always quit the redis client after it's used\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -83,73 +83,6 @@
           "stageName": "Test",
           "stageDeploymentId": "657sml",
           "mode": 1
-        }
-      },
-      "redis-test": {
-        "name": "redis-test",
-        "type": "Redis",
-        "config": {
-          "clusterConfig": {
-            "engineType": "redis",
-            "clusterSpec": {
-              "instanceFamily": "m3",
-              "nodeTypeClass": "cache.m3.medium",
-              "engineVersion": "5.0.4",
-              "clusterModeEnabled": false,
-              "autoFailoverEnabled": false,
-              "numOfShards": 3,
-              "numOfReplicas": "0"
-            },
-            "clusterSetting": {
-              "clusterName": "test",
-              "clusterDescription": "test",
-              "port": 6379
-            },
-            "vpcSpec": {
-              "vpcType": "NEW",
-              "existingVPC": {
-                "vpcID": "",
-                "subNetID": "",
-                "securityGroupID": ""
-              },
-              "newVPC": {
-                "vpcName": "hiru",
-                "vpcIPv4CIDR": "10.0.0.0/16",
-                "subnetName": "hirusub",
-                "subnetIPv4CIDR": "10.0.0.0/20"
-              }
-            },
-            "host": "",
-            "doesExist": false,
-            "alreadyDeployed": false,
-            "redisClient": "",
-            "external": false
-          },
-          "clusterResources": [],
-          "editMode": false,
-          "enableInject": true,
-          "isGlobalEditMode": false,
-          "isClusterSelectionValid": true,
-          "isNewFromGlobal": false,
-          "mode": 0,
-          "operation": {
-            "str": "REDIS_TYPE",
-            "operation": "type",
-            "displayName": "TYPE",
-            "type": {
-              "str": "REDIS_KEYS",
-              "type": "keys",
-              "displayName": "KEYS"
-            }
-          },
-          "params": [],
-          "projectRegion": "us-east-1",
-          "reusableMode": false,
-          "showOperations": true,
-          "validator": {
-            "validatableFields": {},
-            "validity": true
-          }
         }
       }
     },
@@ -278,7 +211,7 @@
               "Principal": "apigateway.amazonaws.com"
             }
           },
-          "apigsachithraAPInameDeployment1568101611171": {
+          "apigsachithraAPInameDeployment1568102885155": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": "052p9kjn18",
@@ -303,15 +236,7 @@
       }
     ],
     "packageJSON": {
-      "dependencies": {
-        "slappforge-sdk-redis": {
-          "name": "slappforge-sdk-redis",
-          "language": "javascript",
-          "version": "0.0.3",
-          "dev": false,
-          "notRemovable": false
-        }
-      }
+      "dependencies": {}
     }
   },
   "PROJECT_META": {
@@ -321,7 +246,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1568102835693
+    "lastSave": 1568103327171
   },
   "VCS_STATE": {
     "provider": "GitHub",
