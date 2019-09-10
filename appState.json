@@ -1,0 +1,333 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "1655cfaa-2f9d-4b27-8689-6dd5618c9bab": {
+        "id": "1655cfaa-2f9d-4b27-8689-6dd5618c9bab",
+        "parent": null,
+        "name": "hiru1009_issue612",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "7df3d7f7-6136-4a5e-98d5-42aa9a68a59f",
+          "12d72b2b-8f84-40f3-a787-f8447c567a61"
+        ],
+        "isRemovable": false,
+        "filePath": "hiru1009_issue612"
+      },
+      "7df3d7f7-6136-4a5e-98d5-42aa9a68a59f": {
+        "id": "7df3d7f7-6136-4a5e-98d5-42aa9a68a59f",
+        "parent": "1655cfaa-2f9d-4b27-8689-6dd5618c9bab",
+        "name": "lambda.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "hiru1009_issue612/lambda.js",
+        "code": "let SL_REDIS = require('slappforge-sdk-redis');\nlet clusterManager = require('./ClusterManager');\nconst redis = new SL_REDIS.Redis(clusterManager);\n\nexports.handler = function (event, context, callback) {\n    // You must always quit the redis client after it's used\n    redis.type({\n        clusterIdentifier: 'test',\n        params: ['sample']\n    }, function (error, response, redisClient) {\n        if (error) {\n            callback(error);\n        } else {\n            //redisClient.quit();\n        }\n    });\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "config": {
+          "runtime": "nodejs8.10",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": []
+        },
+        "triggers": [
+          {
+            "resourceName": "apigusEast1sachithraAPInameindunilget",
+            "config": {}
+          }
+        ]
+      },
+      "12d72b2b-8f84-40f3-a787-f8447c567a61": {
+        "id": "12d72b2b-8f84-40f3-a787-f8447c567a61",
+        "parent": "1655cfaa-2f9d-4b27-8689-6dd5618c9bab",
+        "name": "ClusterManager.js",
+        "type": "JS_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "hiru1009_issue612/ClusterManager.js",
+        "code": "module.exports = function() {\n    this.clusters = [];\n\n    this.clusters[\"test\"] = {\n        host: process.env.EndPoint_redisTest,\n        port: 6379,\n        clusterModeEnabled: false\n    };\n};"
+      }
+    },
+    "rootNode": "1655cfaa-2f9d-4b27-8689-6dd5618c9bab",
+    "openFiles": [
+      "7df3d7f7-6136-4a5e-98d5-42aa9a68a59f"
+    ],
+    "currentFileId": "7df3d7f7-6136-4a5e-98d5-42aa9a68a59f",
+    "resources": {
+      "apigusEast1sachithraAPInameindunilget": {
+        "name": "apigusEast1sachithraAPInameindunilget",
+        "type": "API_GATEWAY",
+        "config": {
+          "selectedRegion": "us-east-1",
+          "apiMode": 1,
+          "apiName": "sachithraAPIname",
+          "apiId": "052p9kjn18",
+          "endpointType": "REGIONAL",
+          "rootResourceId": "zrjp6rdv3b",
+          "existingResources": {
+            "/indunil": "gv2c1w",
+            "/indunil/qa/tst": "r6hp77",
+            "/indunil/qa": "yptvr5",
+            "/": "zrjp6rdv3b"
+          },
+          "resourceMode": 1,
+          "resourcePath": "/indunil",
+          "resourceName": "indunil",
+          "resourceId": "gv2c1w",
+          "restMethod": "GET",
+          "proxyIntegration": false,
+          "enableCORS": false,
+          "stageMode": 1,
+          "stageName": "Test",
+          "stageDeploymentId": "657sml",
+          "mode": 1
+        }
+      },
+      "redis-test": {
+        "name": "redis-test",
+        "type": "Redis",
+        "config": {
+          "clusterConfig": {
+            "engineType": "redis",
+            "clusterSpec": {
+              "instanceFamily": "m3",
+              "nodeTypeClass": "cache.m3.medium",
+              "engineVersion": "5.0.4",
+              "clusterModeEnabled": false,
+              "autoFailoverEnabled": false,
+              "numOfShards": 3,
+              "numOfReplicas": "0"
+            },
+            "clusterSetting": {
+              "clusterName": "test",
+              "clusterDescription": "test",
+              "port": 6379
+            },
+            "vpcSpec": {
+              "vpcType": "NEW",
+              "existingVPC": {
+                "vpcID": "",
+                "subNetID": "",
+                "securityGroupID": ""
+              },
+              "newVPC": {
+                "vpcName": "hiru",
+                "vpcIPv4CIDR": "10.0.0.0/16",
+                "subnetName": "hirusub",
+                "subnetIPv4CIDR": "10.0.0.0/20"
+              }
+            },
+            "host": "",
+            "doesExist": false,
+            "alreadyDeployed": false,
+            "redisClient": "",
+            "external": false
+          },
+          "clusterResources": [],
+          "editMode": false,
+          "enableInject": true,
+          "isGlobalEditMode": false,
+          "isClusterSelectionValid": true,
+          "isNewFromGlobal": false,
+          "mode": 0,
+          "operation": {
+            "str": "REDIS_TYPE",
+            "operation": "type",
+            "displayName": "TYPE",
+            "type": {
+              "str": "REDIS_KEYS",
+              "type": "keys",
+              "displayName": "KEYS"
+            }
+          },
+          "params": [],
+          "projectRegion": "us-east-1",
+          "reusableMode": false,
+          "showOperations": true,
+          "validator": {
+            "validatableFields": {},
+            "validity": true
+          }
+        }
+      }
+    },
+    "customTemplate": {
+      "dialect": "CloudFormation",
+      "definitions": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "This template creates the stack for project hiru1009-issue612. Generated by Sigma",
+        "Outputs": {
+          "apigsachithraAPInameindunilGET": {
+            "Description": "GET endpoint for hiru edit resource /indunil on API sachithraAPIname",
+            "Value": {
+              "Fn::Join": [
+                "",
+                [
+                  "https://",
+                  "052p9kjn18",
+                  ".execute-api.",
+                  "us-east-1",
+                  ".amazonaws.com/",
+                  "Test",
+                  "/indunil"
+                ]
+              ]
+            }
+          }
+        },
+        "Resources": {
+          "apigsachithraAPInameindunilGET": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "RestApiId": "052p9kjn18",
+              "ResourceId": "gv2c1w",
+              "HttpMethod": "GET",
+              "AuthorizationType": "NONE",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200"
+                }
+              ],
+              "Integration": {
+                "Type": "AWS",
+                "IntegrationHttpMethod": "POST",
+                "Uri": {
+                  "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${hiru1009issue612lambda.Arn}/invocations"
+                },
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200"
+                  }
+                ]
+              }
+            }
+          },
+          "hiru1009issue612lambda": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "FunctionName": "hiru1009issue612lambda",
+              "Description": "Invokes functions defined in hiru1009_issue612/lambda.js in project hiru1009-issue612. Generated by Sigma.",
+              "Code": {
+                "S3Bucket": "<no-builds-yet>",
+                "S3Key": "<no-builds-yet>"
+              },
+              "MemorySize": 128,
+              "Handler": "hiru1009_issue612/lambda.handler",
+              "Timeout": 60,
+              "Runtime": "nodejs8.10",
+              "Layers": [],
+              "TracingConfig": {
+                "Mode": "PassThrough"
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "hiru1009issue612lambdaExecutionRole",
+                  "Arn"
+                ]
+              },
+              "Environment": {
+                "Variables": {
+                  "SIGMA_AWS_ACC_ID": "318300609668"
+                }
+              }
+            }
+          },
+          "hiru1009issue612lambdaExecutionRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "ManagedPolicyArns": [
+                "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ],
+              "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Action": [
+                      "sts:AssumeRole"
+                    ],
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": [
+                        "lambda.amazonaws.com"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "apigsachithraAPInameindunilGETPermission": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "Action": "lambda:InvokeFunction",
+              "FunctionName": {
+                "Ref": "hiru1009issue612lambda"
+              },
+              "SourceArn": {
+                "Fn::Sub": [
+                  "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${__ApiId__}/*/${__Method__}${__Path__}",
+                  {
+                    "__Method__": "GET",
+                    "__Path__": "/indunil",
+                    "__ApiId__": "052p9kjn18"
+                  }
+                ]
+              },
+              "Principal": "apigateway.amazonaws.com"
+            }
+          },
+          "apigsachithraAPInameDeployment1568100680965": {
+            "Type": "AWS::ApiGateway::Deployment",
+            "Properties": {
+              "RestApiId": "052p9kjn18",
+              "Description": "An API deployment generated  test by Sigma for API sachithraAPIname",
+              "StageName": "Test"
+            },
+            "DependsOn": [
+              "apigsachithraAPInameindunilGET"
+            ]
+          }
+        }
+      }
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {
+        "slappforge-sdk-redis": {
+          "name": "slappforge-sdk-redis",
+          "language": "javascript",
+          "version": "0.0.3",
+          "dev": false,
+          "notRemovable": false
+        }
+      }
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "hiru1009_issue612",
+    "projectDescription": "",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1568101585303
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "hiru1009_issue612",
+      "url": "https://github.com/HirudineeADRT/hiru1009_issue612"
+    }
+  }
+}
