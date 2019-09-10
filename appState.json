@@ -23,7 +23,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "hiru1009_issue612/lambda.js",
-        "code": "let SL_REDIS = require('slappforge-sdk-redis');\nlet clusterManager = require('./ClusterManager');\nconst redis = new SL_REDIS.Redis(clusterManager);\n\nexports.handler = function (event, context, callback) {\n    // You must always quit the redis client after it's used\n    redis.type({\n        clusterIdentifier: 'test',\n        params: ['sample']\n    }, function (error, response, redisClient) {\n        if (error) {\n            callback(error);\n        } else {\n            //redisClient.quit();\n        }\n    });\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "code": "let SL_REDIS = require('slappforge-sdk-redis');\nlet clusterManager = require('./ClusterManager');\nconst redis = new SL_REDIS.Redis(clusterManager);\n\nexports.handler = function (event, context, callback) {\n    // You must always quit the redis client after it's used\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -278,7 +278,7 @@
               "Principal": "apigateway.amazonaws.com"
             }
           },
-          "apigsachithraAPInameDeployment1568100680965": {
+          "apigsachithraAPInameDeployment1568101611171": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": "052p9kjn18",
@@ -321,7 +321,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1568101585303
+    "lastSave": 1568102835693
   },
   "VCS_STATE": {
     "provider": "GitHub",
